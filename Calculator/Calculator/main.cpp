@@ -10,6 +10,7 @@
 #include <string>
 
 #include "Output.hpp"
+#include "Input.hpp"
 
 using namespace std;
 
@@ -17,13 +18,8 @@ int main() {
     string input;
     
     //Display information
-    app_name();
+    Output::app_name();
+    Output::prompt();
     
-    cout << "\n";
-    cout << "Enter operation: ";
-    getline(cin, input);
-    cout << "\n";
-    
-    
-    return 0;
+    return !Input::capture();
 }

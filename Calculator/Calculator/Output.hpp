@@ -11,6 +11,9 @@
 
 #include <iostream>
 
-void app_name();
+struct Output {
+    static void app_name();
+    static void prompt();
+};
 
 #endif /* Output_hpp */

@@ -10,10 +10,17 @@
 
 using namespace std;
 
-float version = 1.0;
+const float version = 1.0;
 
-void app_name () {
+void Output::app_name () {
     cout
     << "\n"
-    << "Calculator v" << version << "\n";
+    << "Calculator v" << version << endl;
 }
+
+void Output::prompt(){
+    cout
+    << "\n"
+    << "Enter operation: ";
+}
+

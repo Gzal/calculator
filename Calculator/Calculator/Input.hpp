@@ -11,7 +11,13 @@
 
 #include <iostream>
 #include <string>
+#include <cctype>
 
 using namespace std;
 
+class Input {
+
+public:
+    static bool capture();
+};
 #endif /* Input_hpp */
