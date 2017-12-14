@@ -9,18 +9,20 @@
 #include <iostream>
 #include <string>
 
+#include "Output.hpp"
+
 using namespace std;
 
 int main() {
-    string app_name = "Calculator v1.0";
     string input;
     
-    cout << app_name << "\n";
+    //Display information
+    app_name();
+    
     cout << "\n";
     cout << "Enter operation: ";
     getline(cin, input);
     cout << "\n";
-    cout << input;
     
     
     return 0;
