@@ -17,25 +17,27 @@ bool Input::capture() {
 }
 
 bool Input::verify(string &text){
+    bool is_blank = false;
     bool is_digit = false;
     bool is_operand = false;
+    
     bool valid_entry = false;
     
     for (auto c : text) {
-        if (isdigit(c))
-            is_digit = true;
-        else {
-            is_digit = false;
-            switch (c) {
-                case '+': case '-': case '*': case '/':
-                    is_operand = true;
-                    break;
-                default:
-                    is_operand = false;
-                    break;
-            }
+        isblank(c) ? is_blank = true : is_blank = false;
+        
+        isdigit(c) ? is_digit = true : is_digit = false;
+        
+        switch (c) {
+            case '+': case '-': case '*': case '/':
+                is_operand = true;
+                break;
+            default:
+                is_operand = false;
+                break;
         }
-        valid_entry = is_digit || is_operand;
+        
+        valid_entry = is_blank || is_digit || is_operand;
         
         if (valid_entry)
             continue;
