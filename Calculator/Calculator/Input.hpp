@@ -16,8 +16,9 @@
 using namespace std;
 
 class Input {
-
 public:
     static bool capture();
+private:
+    static bool verify(string &text);
 };
 #endif /* Input_hpp */
