@@ -1,25 +1,23 @@
 //
-//  main.cpp
+//  Input.hpp
 //  Calculator
 //
 //  Created by Jose Gabriel Gonzalez Belmontes on 12/13/17.
 //  Copyright © 2017 Jose Gabriel Gonzalez Belmontes. All rights reserved.
 //
 
+#ifndef Input_hpp
+#define Input_hpp
+
 #include <iostream>
 #include <string>
-
-#include "Output.hpp"
-#include "Input.hpp"
+#include <cctype>
 
 using namespace std;
 
-int main() {
-    string input;
-    
-    //Display information
-    Output::app_name();
-    Output::prompt();
-    
-    return !Input::capture();
-}
+class Input {
+
+public:
+    static bool capture();
+};
+#endif /* Input_hpp */
