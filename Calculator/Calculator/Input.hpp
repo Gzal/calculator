@@ -13,12 +13,12 @@
 #include <string>
 #include <cctype>
 
-using namespace std;
+namespace input {
+    
+    bool capture();
+    
+    bool verify(std::string &text);
+    
+}
 
-class Input {
-public:
-    static bool capture();
-private:
-    static bool verify(string &text);
-};
 #endif /* Input_hpp */

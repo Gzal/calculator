@@ -18,8 +18,8 @@ int main() {
     string input;
     
     //Display information
-    Output::app_name();
-    Output::prompt();
+    output::app_name();
+    output::prompt();
     
-    return !Input::capture();
+    return !input::capture();
 }

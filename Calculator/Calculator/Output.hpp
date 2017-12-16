@@ -11,9 +11,12 @@
 
 #include <iostream>
 
-struct Output {
-    static void app_name();
-    static void prompt();
-};
+namespace output {
+    
+    void app_name();
+    
+    void prompt();
+    
+}
 
 #endif /* Output_hpp */

@@ -8,45 +8,51 @@
 
 #include "Input.hpp"
 
-bool Input::capture() {
-    string operation;
-    
-    getline(cin,operation);
-    
-    return Input::verify(operation);;
-}
+using namespace std;
 
-bool Input::verify(string &text){
-    bool is_blank = false;
-    bool is_digit = false;
-    bool is_operand = false;
+namespace input {
     
-    bool valid_entry = false;
+    bool capture() {
+        string operation;
+        
+        getline(cin,operation);
+        
+        return verify(operation);;
+    }
     
-    for (auto c : text) {
-        isblank(c) ? is_blank = true : is_blank = false;
+    bool verify(string &text) {
+        bool is_blank = false;
+        bool is_digit = false;
+        bool is_operand = false;
         
-        isdigit(c) ? is_digit = true : is_digit = false;
+        bool valid_entry = false;
         
-        switch (c) {
-            case '+': case '-': case '*': case '/':
-                is_operand = true;
-                break;
-            default:
-                is_operand = false;
+        for (auto c : text) {
+            isblank(c) ? is_blank = true : is_blank = false;
+            
+            isdigit(c) ? is_digit = true : is_digit = false;
+            
+            switch (c) {
+                case '+': case '-': case '*': case '/':
+                    is_operand = true;
+                    break;
+                default:
+                    is_operand = false;
+                    break;
+            }
+            
+            valid_entry = is_blank || is_digit || is_operand;
+            
+            if (valid_entry)
+                continue;
+            else
                 break;
         }
         
-        valid_entry = is_blank || is_digit || is_operand;
-        
-        if (valid_entry)
-            continue;
-        else
-            break;
+        return valid_entry;
     }
-    
-    return valid_entry;
-    }
+
+}
           /*
            throw runtime_error("Invalid digit or operator!");
             for (auto o : operators){

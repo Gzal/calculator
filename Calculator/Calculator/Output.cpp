@@ -12,15 +12,17 @@ using namespace std;
 
 const float version = 1.0;
 
-void Output::app_name () {
-    cout
-    << "\n"
-    << "Calculator v" << version << endl;
+namespace output {
+    
+    void app_name () {
+        cout
+        << "\n"
+        << "Calculator v" << version << endl;
+    }
+    
+    void prompt(){
+        cout
+        << "\n"
+        << "Enter operation: ";
+    }
 }
-
-void Output::prompt(){
-    cout
-    << "\n"
-    << "Enter operation: ";
-}
-
