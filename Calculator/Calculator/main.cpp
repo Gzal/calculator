@@ -21,5 +21,5 @@ int main() {
     output::app_name();
     output::prompt();
     
-    return !input::capture();
+    return !input::capture(input);
 }
