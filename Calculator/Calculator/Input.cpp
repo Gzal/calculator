@@ -7,27 +7,52 @@
 //
 
 #include "Input.hpp"
+#include "Output.hpp"
 
 using namespace std;
 
 namespace input {
     
-    bool capture(string &operation) {
+    bool capture(string &input) {
+        bool is_valid_op = false;
         
-        getline(cin,operation);
+        do {
+            output::prompt();
+            getline(cin,input);
+            is_valid_op = verify(input);
+            
+            try {
+                if (!is_valid_op)
+                    throw runtime_error("Invalid digit or operator found!");
+            }
+            catch (runtime_error err) {
+                char c{' '};
+                
+                cout
+                << "\n"
+                << err.what() << "\n"
+                << "Try Again? (Y/N): ";
+                cin >> c;
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                
+                if ( c == 'y' || c == 'Y')
+                    continue;
+                else
+                    break;
+            }
+        } while (!is_valid_op);
         
-        
-        return verify(operation);;
+        return is_valid_op;
     }
     
-    bool verify(string &text) {
+    bool verify(string &s) {
         bool is_blank = false;
         bool is_digit = false;
         bool is_operand = false;
         
         bool valid_entry = false;
         
-            for (auto c : text) {
+            for (auto c : s) {
                 isblank(c) ? is_blank = true : is_blank = false;
                 isdigit(c) ? is_digit = true : is_digit = false;
                 
@@ -42,16 +67,8 @@ namespace input {
                 
                 valid_entry = is_blank || is_digit || is_operand;
                 
-                try {
-                    if (!valid_entry)
-                        throw runtime_error("Invalid digit or operator found!");
-                }
-                catch (runtime_error err) {
-                    cout
-                    << err.what() << endl;
+                if (!valid_entry)
                     break;
-                }
-
             }
         
         return valid_entry;

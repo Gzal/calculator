@@ -15,11 +15,12 @@
 using namespace std;
 
 int main() {
-    string input;
+    string operation;
     
     //Display information
     output::app_name();
-    output::prompt();
     
-    return !input::capture(input);
+    input::capture(operation);
+    
+    return 0;
 }

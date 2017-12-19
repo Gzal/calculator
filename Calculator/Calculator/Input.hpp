@@ -15,7 +15,7 @@
 
 namespace input {
     
-    bool capture(std::string &operation);
+    bool capture(std::string &input);
     
     bool verify(std::string &text);
     
