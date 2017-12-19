@@ -31,7 +31,7 @@ namespace input {
                 cout
                 << "\n"
                 << err.what() << "\n"
-                << "Try Again? (Y/N): ";
+                << "Do you wish to try Again? (Y/N): ";
                 cin >> c;
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
                 

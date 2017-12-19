@@ -20,9 +20,15 @@ namespace output {
         << "Calculator v" << version << endl;
     }
     
-    void prompt(){
+    void prompt() {
         cout
         << "\n"
         << "Enter operation: ";
+    }
+    
+    void again() {
+        cout
+        << "\n"
+        << "Do you wish to enter another operation? (Y/N): ";
     }
 }

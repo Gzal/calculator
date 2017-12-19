@@ -16,11 +16,21 @@ using namespace std;
 
 int main() {
     string operation;
+    bool cont = true;
     
     //Display information
     output::app_name();
     
-    input::capture(operation);
+    while (cont) {
+        char c {' '};
+        
+        cont = input::capture(operation);
+        output::again();
+        cin >> c;
+        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        if ( c == 'n' || c == 'N')
+            cont = false;
+    }
     
     return 0;
 }

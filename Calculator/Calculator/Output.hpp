@@ -17,6 +17,8 @@ namespace output {
     
     void prompt();
     
+    void again();
+    
 }
 
 #endif /* Output_hpp */
