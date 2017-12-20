@@ -12,20 +12,18 @@
 #include "Output.hpp"
 #include "Input.hpp"
 
-using namespace std;
-
 int main() {
-    string operation;
-    bool cont = true;
+    std::string operation{" "};
+    bool go_again{false};
     
-    //Display information
     output::app_name();
     
-    while (cont) {
-        cont = input::capture(operation);
+    do {
+        if(!input::capture(operation))
+            return 0;
         output::again();
-        cont = input::yes_no();
-    }
+        go_again = input::yes_no();
+    } while (go_again);
     
     return 0;
 }

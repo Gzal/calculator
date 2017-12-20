@@ -9,48 +9,45 @@
 #include "Input.hpp"
 #include "Output.hpp"
 
-using namespace std;
-
 namespace input {
-    
-    bool capture(string &input) {
-        bool is_valid_op = false;
+    bool capture(std::string &input) {
+        bool is_valid_oper = false;
         
         do {
             output::prompt();
-            getline(cin,input);
-            is_valid_op = verify(input);
+            getline(std::cin,input);
+            
+            is_valid_oper = verify(input);
             
             try {
-                if (!is_valid_op)
-                    throw runtime_error("Invalid digit or operator found!");
+                if (!is_valid_oper)
+                    throw std::runtime_error("Invalid digit or operator found!");
             }
-            catch (runtime_error err) {
-                cout
+            catch (std::runtime_error err) {
+                std::cout
                 << "\n"
                 << err.what() << "\n"
                 << "Do you wish to try Again? (Y/N): ";
+                //Checks user input for a yes or no command
                 if (yes_no())
                     continue;
                 else
-                    break;
+                    return is_valid_oper;
             }
-        } while (!is_valid_op);
+        } while (!is_valid_oper);
         
-        return is_valid_op;
+        return is_valid_oper;
     }
     
-    bool verify(string &s) {
+    bool verify(const std::string &s) {
         bool is_blank = false;
         bool is_digit = false;
         bool is_operand = false;
         
         bool valid_entry = false;
-        
             for (auto c : s) {
                 isblank(c) ? is_blank = true : is_blank = false;
                 isdigit(c) ? is_digit = true : is_digit = false;
-                
                 switch (c) {
                     case '+': case '-': case '*': case '/':
                         is_operand = true;
@@ -72,8 +69,10 @@ namespace input {
     bool yes_no() {
         char c{' '};
         
-        cin >> c;
-        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        std::cin >> c;
+        //Ignores newline character and any other character in between to avoid
+        //errors
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
         
         switch (c) {
             case 'y': case 'Y':
@@ -81,13 +80,12 @@ namespace input {
             case 'n': case 'N':
                 return false;
             default:
-                cout
+                std::cout
                 << "Invalid input!";
                 return false;
         }
         
         return false;
     }
-
 }
 

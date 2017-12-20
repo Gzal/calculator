@@ -14,11 +14,16 @@
 #include <cctype>
 
 namespace input {
-    
+    //Prompts user to input an operation and stores it in the string ref and
+    //checks the string to ensure it represents a valid operation. Returns a
+    //flag depending on whether it successfully captured a valid operation or
+    //not.
     bool capture(std::string &input);
-    
-    bool verify(std::string &text);
-    
+    //Checks whether the characters in a string contain only digits, white space,
+    //or operation characters: '+', '-', '*' and/or '/'.
+    bool verify(const std::string &s);
+    //Checks standard input stream for a yes/no command. Namely, if the user has
+    //entered 'y', 'Y', 'n', or 'N'.
     bool yes_no();
 }
 
