@@ -26,16 +26,11 @@ namespace input {
                     throw runtime_error("Invalid digit or operator found!");
             }
             catch (runtime_error err) {
-                char c{' '};
-                
                 cout
                 << "\n"
                 << err.what() << "\n"
                 << "Do you wish to try Again? (Y/N): ";
-                cin >> c;
-                cin.ignore(numeric_limits<streamsize>::max(),'\n');
-                
-                if ( c == 'y' || c == 'Y')
+                if (yes_no())
                     continue;
                 else
                     break;
@@ -72,6 +67,26 @@ namespace input {
             }
         
         return valid_entry;
+    }
+
+    bool yes_no() {
+        char c{' '};
+        
+        cin >> c;
+        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        
+        switch (c) {
+            case 'y': case 'Y':
+                return true;
+            case 'n': case 'N':
+                return false;
+            default:
+                cout
+                << "Invalid input!";
+                return false;
+        }
+        
+        return false;
     }
 
 }

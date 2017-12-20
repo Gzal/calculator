@@ -19,6 +19,7 @@ namespace input {
     
     bool verify(std::string &text);
     
+    bool yes_no();
 }
 
 #endif /* Input_hpp */
