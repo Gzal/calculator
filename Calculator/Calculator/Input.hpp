@@ -25,6 +25,8 @@ namespace input {
     //Checks standard input stream for a yes/no command. Namely, if the user has
     //entered 'y', 'Y', 'n', or 'N'.
     bool yes_no();
+    
+    bool process_oper(const std::string &s);
 }
 
 #endif /* Input_hpp */
