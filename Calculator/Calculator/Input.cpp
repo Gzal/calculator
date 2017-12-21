@@ -10,6 +10,8 @@
 #include "Output.hpp"
 
 namespace input {
+    enum operators { add = '+', sub = '-', mult = '*', div = '/'};
+    
     bool capture(std::string &input) {
         bool is_valid_oper = false;
         
@@ -49,7 +51,7 @@ namespace input {
                 isblank(c) ? is_blank = true : is_blank = false;
                 isdigit(c) ? is_digit = true : is_digit = false;
                 switch (c) {
-                    case '+': case '-': case '*': case '/':
+                    case add: case sub: case mult: case div:
                         is_operand = true;
                         break;
                     default:
