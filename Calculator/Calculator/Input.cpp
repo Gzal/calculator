@@ -39,6 +39,7 @@ namespace input {
         } while (!is_valid_oper);
         
         find_elem(input);
+        assign_elem();
         
         return is_valid_oper;
     }
@@ -105,6 +106,26 @@ namespace input {
             }
         }
         return true;
+    }
+    
+    void assign_elem() {
+        oprnd1 = *oprnd1_it - '0';
+        oprnd2 = *oprnd2_it - '0';
+        switch(*oprtr_it) {
+            case add:
+                oprtr = add;
+                break;
+            case sub:
+                oprtr = sub;
+                break;
+            case mult:
+                oprtr = mult;
+                break;
+            case div:
+                oprtr = div;
+                break;
+        }
+        
     }
     
     bool yes_no() {

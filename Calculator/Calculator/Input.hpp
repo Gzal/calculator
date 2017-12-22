@@ -27,6 +27,8 @@ namespace input {
     bool yes_no();
     
     bool find_elem(const std::string &s);
+    
+    void assign_elem();
 }
 
 #endif /* Input_hpp */
