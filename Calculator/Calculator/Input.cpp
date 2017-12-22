@@ -38,7 +38,7 @@ namespace input {
             }
         } while (!is_valid_oper);
         
-        process_oper(input);
+        find_elem(input);
         
         return is_valid_oper;
     }
@@ -70,47 +70,40 @@ namespace input {
         return valid_entry;
     }
     
-    enum class oper_elem { null, oprnd1, oprtr, oprnd2};
-
+    enum class oper_elem {null, oprnd1, oprtr, oprnd2};
+    
     int oprnd1{0}, oprnd2{1};
     operators oprtr;
     oper_elem curr_elem = oper_elem::null;
+    std::string::const_iterator oprnd1_it, oprnd2_it, oprtr_it;
     
-    bool process_oper(const std::string &s) {
-        for (auto c : s) {
-            if (!isblank(c)) {
-                if (isdigit(c) && curr_elem == oper_elem::null) {
-                    curr_elem = oper_elem::oprnd1;
-                    oprnd1 = c - '0';
-                } else if (isdigit(c) && curr_elem == oper_elem::oprtr) {
-                    curr_elem = oper_elem::oprnd2;
-                    oprnd2 = c - '0';
-                } else if (ispunct(c) && curr_elem == oper_elem::oprnd1) {
-                    curr_elem = oper_elem::oprtr;
-                    switch(c) {
-                        case add:
-                            oprtr = add;
-                            break;
-                        case sub:
-                            oprtr = sub;
-                            break;
-                        case mult:
-                            oprtr = mult;
-                            break;
-                        case div:
-                            oprtr = div;
-                            break;
-                        default:
-                            break;
-                    }
+    bool find_elem(const std::string &s) {
+        curr_elem = oper_elem::oprnd1;
+        for (auto it = s.begin(); it != s.end(); ++it) {
+            if (!isblank(*it) && curr_elem != oper_elem::null) {
+                switch(curr_elem) {
+                    case oper_elem::oprnd1:
+                        if (isdigit(*it)) {
+                            oprnd1_it = it;
+                            curr_elem = oper_elem::oprtr;
+                        }
+                        break;
+                    case oper_elem::oprtr:
+                        if (ispunct(*it)) {
+                            oprtr_it = it;
+                            curr_elem = oper_elem::oprnd2;
+                        }
+                        break;
+                    case oper_elem::oprnd2:
+                        if (isdigit(*it)) {
+                            oprnd2_it = it;
+                            curr_elem = oper_elem::null;
+                        }
+                    case oper_elem::null: default:
+                        break;
                 }
             }
-            if(curr_elem == oper_elem::oprnd2) {
-                curr_elem = oper_elem::null;
-                break;
-            }
         }
-        std::cout << oprnd1 << " " << static_cast<char>(oprtr) << " " << oprnd2;
         return true;
     }
     
@@ -136,4 +129,3 @@ namespace input {
         return false;
     }
 }
-

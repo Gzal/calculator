@@ -26,7 +26,7 @@ namespace input {
     //entered 'y', 'Y', 'n', or 'N'.
     bool yes_no();
     
-    bool process_oper(const std::string &s);
+    bool find_elem(const std::string &s);
 }
 
 #endif /* Input_hpp */
