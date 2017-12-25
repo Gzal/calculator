@@ -12,7 +12,7 @@
 #include <iostream>
 
 namespace output {
-    const float version = 1.0;
+    const float version = 1.0f;
     
     inline void app_name () {
         std::cout

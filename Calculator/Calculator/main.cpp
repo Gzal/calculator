@@ -13,17 +13,10 @@
 #include "Input.hpp"
 
 int main() {
-    std::string operation{" "};
-    bool go_again{false};
+    Calculator calculator;
     
     output::app_name();
-    
-    do {
-        if(!input::capture(operation))
-            return 0;
-        output::again();
-        go_again = input::yes_no();
-    } while (go_again);
+    calculator.capture();
     
     return 0;
 }
