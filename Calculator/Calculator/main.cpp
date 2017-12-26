@@ -10,13 +10,17 @@
 #include <string>
 
 #include "Output.hpp"
-#include "Input.hpp"
+#include "Calculator.hpp"
 
 int main() {
+    bool go_again{true};
     Calculator calculator;
     
     output::app_name();
-    calculator.capture();
+    
+    while(go_again) {
+        calculator.capture_oprtn();
+    }
     
     return 0;
 }

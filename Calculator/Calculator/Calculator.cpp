@@ -9,56 +9,59 @@
 #include "Calculator.hpp"
 #include "Output.hpp"
 
-void Calculator::capture() {
+void Calculator::capture_oprtn() {
     do {
         try{
-            get_operation();
-            verify_operation();
-            dissect_operation();
+            get_oprtn();
+            verify_oprtn();
+            dissect_oprtn();
             assign_elem();
         } catch(std::runtime_error error){
-            valid_operation = false;
+            valid_oprtn = false;
             if(!try_again(error))
                 return;
         }
-    } while(!valid_operation);
+    } while(!valid_oprtn);
+    
+    return;
+}
+
 
     return;
 }
 
-void Calculator::get_operation() {
+void Calculator::get_oprtn() {
     output::prompt();
-    getline(std::cin,Calculator::operation);
+    getline(std::cin,Calculator::oprtn);
     return;
 }
 
-void Calculator::verify_operation() {
-    bool is_blank{false}, is_digit{false}, is_operand{false};
+void Calculator::verify_oprtn() {
+    bool is_blank{false}, is_digit{false}, is_oprnd{false};
     bool invalid_char{false};
     
-    for (auto c : operation) {
+    for (auto c : oprtn) {
             isblank(c) ? is_blank = true : is_blank = false;
             isdigit(c) ? is_digit = true : is_digit = false;
             switch (c) {
                 case add: case sub: case mult: case div:
-                    is_operand = true;
+                    is_oprnd = true;
                     break;
                 default:
-                    is_operand = false;
+                    is_oprnd = false;
                     break;
             }
-            invalid_char = !is_blank && !is_digit && !is_operand;
+            invalid_char = !is_blank && !is_digit && !is_oprnd;
             
             if(invalid_char)
                 throw(std::runtime_error("Invalid character found"));
     }
-    
     return;
 }
 
-void Calculator::dissect_operation() {
+void Calculator::dissect_oprtn() {
     oprtn_elem curr_elem = oprtn_elem::oprnd1;
-    for (auto it = operation.begin(); it != operation.end(); ++it) {
+    for (auto it = oprtn.begin(); it != oprtn.end(); ++it) {
         if (!isblank(*it) && curr_elem != oprtn_elem::none) {
             switch(curr_elem) {
                 case oprtn_elem::oprnd1:
@@ -77,7 +80,7 @@ void Calculator::dissect_operation() {
                     if (isdigit(*it)) {
                         oprnd2_it = it;
                         curr_elem = oprtn_elem::none;
-                        valid_operation = true;
+                        valid_oprtn = true;
                     }
                     break;
                 default:
@@ -106,7 +109,6 @@ void Calculator::assign_elem() {
             oprtr = div;
             break;
     }
-    
 }
 
 bool Calculator::try_again(std::runtime_error e) {

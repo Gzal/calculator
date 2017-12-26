@@ -15,28 +15,27 @@
 
 class Calculator {
 public:
-    std::string operation{""};
+    std::string oprtn{""};
+    bool valid_oprtn{false};
 private:
-    enum operators{none, add = '+', sub = '-', mult = '*', div = '/'};
+    enum oprtrs{none, add = '+', sub = '-', mult = '*', div = '/'};
     enum class oprtn_elem{none, oprnd1, oprtr, oprnd2};
     
-    bool valid_operation{false};
-    
     std::string::const_iterator oprnd1_it, oprnd2_it, oprtr_it;
-    int oprnd1{0}, oprnd2{0}, result{0};
-    operators oprtr{none};
+    int oprnd1{0}, oprnd2{0};
+    oprtrs oprtr{none};
 public:
     //Gathers and processes a user's input transforming its elements into
     //variables for calculation.
-    void capture();
+    void capture_oprtn();
 private:
     //Prompts user to enter a string operation to calculate.
-    void get_operation();
+    void get_oprtn();
     //Verifies user input contains only valid characters.
-    void verify_operation();
+    void verify_oprtn();
     //Finds the location on the string of the different operation elements and
     //ensures that they have been entered in the right order.
-    void dissect_operation();
+    void dissect_oprtn();
     //Assigns the operation elements onto separate variables
     void assign_elem();
     
