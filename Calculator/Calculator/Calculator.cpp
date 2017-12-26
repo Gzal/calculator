@@ -26,7 +26,30 @@ void Calculator::capture_oprtn() {
     return;
 }
 
+void Calculator::show_result() {
+    do_oprtn();
+    std::cout
+    << "\n"
+    << "The result is " << result << std::endl;
+}
 
+void Calculator::do_oprtn() {
+    switch(oprtr) {
+        case add:
+            result = oprnd1 + oprnd2;
+            break;
+        case sub:
+            result = oprnd1 - oprnd2;
+            break;
+        case mult:
+            result = oprnd1 * oprnd2;
+            break;
+        case div:
+            result = oprnd1 / oprnd2;
+            break;
+        case none: default:
+            break;
+    }
     return;
 }
 

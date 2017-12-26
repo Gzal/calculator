@@ -17,6 +17,7 @@ class Calculator {
 public:
     std::string oprtn{""};
     bool valid_oprtn{false};
+    int result{0};
 private:
     enum oprtrs{none, add = '+', sub = '-', mult = '*', div = '/'};
     enum class oprtn_elem{none, oprnd1, oprtr, oprnd2};
@@ -28,6 +29,8 @@ public:
     //Gathers and processes a user's input transforming its elements into
     //variables for calculation.
     void capture_oprtn();
+    void show_result();
+    void do_oprtn();
 private:
     //Prompts user to enter a string operation to calculate.
     void get_oprtn();
