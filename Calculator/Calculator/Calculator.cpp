@@ -18,7 +18,7 @@ void Calculator::capture_oprtn() {
             assign_elmnt();
         } catch(std::runtime_error error){
             valid_oprtn = false;
-            if(!get_choice(error))
+            if(!get_choice(error.what()))
                 return;
         }
     } while(!valid_oprtn);
@@ -138,14 +138,15 @@ void Calculator::do_oprtn() {
     return;
 }
 
-bool Calculator::get_choice(std::runtime_error e) {
+bool Calculator::get_choice(std::string msg) {
+    bool there_is_error{!msg.empty()};
     bool choice{true};
     char c{' '};
     
-    std::cout
-    << "\n"
-    << e.what() << "\n"
-    << "Do you wish to try another operation? (Y/N): ";
+    std::cout << "\n";
+    if(there_is_error)
+        std::cout << msg << "\n";
+    std::cout << "Do you wish to try another operation? (Y/N): ";
     std::cin >> c;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
     
@@ -158,7 +159,9 @@ bool Calculator::get_choice(std::runtime_error e) {
             break;
         default:
             std::cout
-            << "Invalid input! The application will terminate.\n";
+            << "Invalid input!\n";
+            if(!there_is_error)
+                std::cout << "The application will terminate.\n";
             choice = false;
             break;
     }

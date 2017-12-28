@@ -31,6 +31,8 @@ public:
     void capture_oprtn();
     //Calculates and outputs the result for the requested operation.
     void show_result();
+    //Prompts the user to enter another operation and returns choice.
+    bool get_choice(std::string msg = "");
 private:
     //Prompts user to enter a string operation to calculate.
     void get_oprtn();
@@ -43,8 +45,6 @@ private:
     void assign_elmnt();
     //Performs the requested operation.
     void do_oprtn();
-    //Prompts the user to try again and accepts a yes or no answer.
-    bool get_choice(std::runtime_error);
 };
 
 #endif /* Calculator_hpp */

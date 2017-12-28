@@ -12,8 +12,6 @@
 #include "Output.hpp"
 #include "Calculator.hpp"
 
-bool get_choice();
-
 int main() {
     bool can_contin{true};
     Calculator calc;
@@ -24,34 +22,8 @@ int main() {
         calc.capture_oprtn();
         if(calc.valid_oprtn)
             calc.show_result();
-        can_contin = get_choice();
+        can_contin = calc.get_choice();
     }
     
     return 0;
-}
-
-bool get_choice() {
-    bool cont{true};
-    char c{' '};
-    
-    std::cout
-    << "\n"
-    << "Do you wish to enter a new operation? (Y/N): ";
-    std::cin >> c;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
-    
-    switch (c) {
-        case 'y': case 'Y':
-            cont = true;
-            break;
-        case 'n': case 'N':
-            cont = false;
-            break;
-        default:
-            std::cout
-            << "Invalid input! The application will termiante.\n";
-            cont = false;
-            break;
-    }
-    return cont;
 }
