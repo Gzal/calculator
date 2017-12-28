@@ -91,20 +91,23 @@ void Calculator::dissect_oprtn() {
                     if (isdigit(*it)) {
                         oprnd1_it = it;
                         curr_elem = oprtn_elem::oprtr;
-                    }
+                    } else
+                        throw(std::runtime_error("First element must be a digit!"));
                     break;
                 case oprtn_elem::oprtr:
                     if (ispunct(*it)) {
                         oprtr_it = it;
                         curr_elem = oprtn_elem::oprnd2;
                     } else
+                        throw(std::runtime_error("Second element must be an operator!"));
                     break;
                 case oprtn_elem::oprnd2:
                     if (isdigit(*it)) {
                         oprnd2_it = it;
                         curr_elem = oprtn_elem::none;
                         valid_oprtn = true;
-                    }
+                    } else
+                        throw(std::runtime_error("Third element must be a digit!"));
                     break;
                 default:
                     throw(std::runtime_error("Invalid operation!"));
