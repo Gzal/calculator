@@ -12,31 +12,31 @@
 #include "Output.hpp"
 #include "Calculator.hpp"
 
-bool try_again();
+bool get_choice();
 
 int main() {
-    bool go_again{true};
-    Calculator calculator;
+    bool can_contin{true};
+    Calculator calc;
     
     output::app_name();
     
-    while(go_again) {
-        calculator.capture_oprtn();
-        if(calculator.valid_oprtn)
-            calculator.show_result();
-        go_again = try_again();
+    while(can_contin) {
+        calc.capture_oprtn();
+        if(calc.valid_oprtn)
+            calc.show_result();
+        can_contin = get_choice();
     }
     
     return 0;
 }
 
-bool try_again() {
+bool get_choice() {
     bool cont{true};
     char c{' '};
     
     std::cout
     << "\n"
-    << "Do you wish to try again? (Y/N): ";
+    << "Do you wish to enter a new operation? (Y/N): ";
     std::cin >> c;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
     
@@ -49,7 +49,7 @@ bool try_again() {
             break;
         default:
             std::cout
-            << "Invalid input!\n";
+            << "Invalid input! The application will termiante.\n";
             cont = false;
             break;
     }

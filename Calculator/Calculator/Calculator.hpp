@@ -20,7 +20,7 @@ public:
     int result{0};
 private:
     enum oprtrs{none, add = '+', sub = '-', mult = '*', div = '/'};
-    enum class oprtn_elem{none, oprnd1, oprtr, oprnd2};
+    enum class oprtn_elmnt{none, oprnd1, oprtr, oprnd2};
     
     std::string::const_iterator oprnd1_it, oprnd2_it, oprtr_it;
     int oprnd1{0}, oprnd2{0};
@@ -40,11 +40,11 @@ private:
     //checks that they have been entered in the right order.
     void dissect_oprtn();
     //Assigns the operation elements into separate variables
-    void assign_elem();
+    void assign_elmnt();
     //Performs the requested operation.
     void do_oprtn();
     //Prompts the user to try again and accepts a yes or no answer.
-    bool try_again(std::runtime_error);
+    bool get_choice(std::runtime_error);
 };
 
 #endif /* Calculator_hpp */
