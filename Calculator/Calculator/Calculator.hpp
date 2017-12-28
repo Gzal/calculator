@@ -29,19 +29,21 @@ public:
     //Gathers and processes a user's input transforming its elements into
     //variables for calculation.
     void capture_oprtn();
+    //Calculates and outputs the result for the requested operation.
     void show_result();
-    void do_oprtn();
 private:
     //Prompts user to enter a string operation to calculate.
     void get_oprtn();
-    //Verifies user input contains only valid characters.
+    //Verifies that user input contains only valid characters.
     void verify_oprtn();
-    //Finds the location on the string of the different operation elements and
-    //ensures that they have been entered in the right order.
+    //Finds on the string the location of the different operation elements and
+    //checks that they have been entered in the right order.
     void dissect_oprtn();
-    //Assigns the operation elements onto separate variables
+    //Assigns the operation elements into separate variables
     void assign_elem();
-    
+    //Performs the requested operation.
+    void do_oprtn();
+    //Prompts the user to try again and accepts a yes or no answer.
     bool try_again(std::runtime_error);
 };
 

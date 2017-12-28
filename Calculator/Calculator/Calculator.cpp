@@ -33,26 +33,6 @@ void Calculator::show_result() {
     << "The result is " << result << std::endl;
 }
 
-void Calculator::do_oprtn() {
-    switch(oprtr) {
-        case add:
-            result = oprnd1 + oprnd2;
-            break;
-        case sub:
-            result = oprnd1 - oprnd2;
-            break;
-        case mult:
-            result = oprnd1 * oprnd2;
-            break;
-        case div:
-            result = oprnd1 / oprnd2;
-            break;
-        case none: default:
-            break;
-    }
-    return;
-}
-
 void Calculator::get_oprtn() {
     output::prompt();
     getline(std::cin,Calculator::oprtn);
@@ -83,6 +63,7 @@ void Calculator::verify_oprtn() {
 }
 
 void Calculator::dissect_oprtn() {
+    //Current element being searched for on the string
     oprtn_elem curr_elem = oprtn_elem::oprnd1;
     for (auto it = oprtn.begin(); it != oprtn.end(); ++it) {
         if (!isblank(*it) && curr_elem != oprtn_elem::none) {
@@ -135,6 +116,26 @@ void Calculator::assign_elem() {
             oprtr = div;
             break;
     }
+}
+
+void Calculator::do_oprtn() {
+    switch(oprtr) {
+        case add:
+            result = oprnd1 + oprnd2;
+            break;
+        case sub:
+            result = oprnd1 - oprnd2;
+            break;
+        case mult:
+            result = oprnd1 * oprnd2;
+            break;
+        case div:
+            result = oprnd1 / oprnd2;
+            break;
+        case none: default:
+            break;
+    }
+    return;
 }
 
 bool Calculator::try_again(std::runtime_error e) {
