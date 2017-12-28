@@ -12,11 +12,25 @@
 #include <iostream>
 
 namespace output {
+    const float version = 1.0f;
     
-    void app_name();
+    inline void app_name () {
+        std::cout
+        << "\n"
+        << "Calculator v" << version << std::endl;
+    }
     
-    void prompt();
+    inline void prompt() {
+        std::cout
+        << "\n"
+        << "Enter operation: ";
+    }
     
+    inline void again() {
+        std::cout
+        << "\n"
+        << "Do you wish to enter another operation? (Y/N): ";
+    }
 }
 
 #endif /* Output_hpp */
